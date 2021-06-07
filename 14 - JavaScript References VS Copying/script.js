@@ -1,20 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>JS Reference VS Copy</title>
-</head>
-<body>
+   // start with strings, numbers and booleans
+   /* let age = 100;
+   let age2 = age;
+   console.log(age,age2);
+   age = 200;
+   console.log(age,age2);
 
-  <script>
-    // start with strings, numbers and booleans
+   let name = 'khethelo';
+   let name2 = name;
 
+   console.log(name,name2);
+   name = 'Goodhope';
+   console.log(name,name2);
+ */
     // Let's say we have an array
     const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
 
     // and we want to make a copy of it.
+   const team = players;
 
+   console.log(player, team);
     // You might think we can just do something like this:
+    // team[3] = 'Lax';    
 
     // however what happens when we update that array?
 
@@ -25,13 +31,19 @@
     // Why? It's because that is an array reference, not an array copy. They both point to the same array!
 
     // So, how do we fix this? We take a copy instead!
-
+    const team2 = players.slice();
     // one way
 
     // or create a new array and concat the old one in
 
-    // or use the new ES6 Spread
+    const team3 = [].concat(players);
 
+    // or use the new ES6 Spread
+    const team4 = [...players]
+    team[4] = 'JD'
+    console.log(team4);
+
+    const team5 = Array.from(players);
     // now when we update it, the original one isn't changed
 
     // The same thing goes for objects, let's say we have a person object
@@ -43,14 +55,28 @@
     };
 
     // and think we make a copy:
-
+    /* const captain = person;
+    captain.age = 99; */
     // how do we take a copy instead?
-
+    Object.assign({},person, {number:99});
     // We will hopefully soon see the object ...spread
+
+
 
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
 
-  </script>
+    
+    const khet = {
+        name: 'khethelo',
+        age: 100,
+        social: {
+            twitter: 'khethelogp',
+            instagram: 'khetman',
+        }
+    }
 
-</body>
-</html>
+    console.log(khet);
+
+    const dev = Object.assign({},khet);
+
+    const dev2 = JSON.parse(JSON.stringify(khet));
