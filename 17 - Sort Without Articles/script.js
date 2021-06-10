@@ -12,4 +12,3 @@ function strip(bandName) {
       .join('');
   
   console.log(sortedBands);
-  
